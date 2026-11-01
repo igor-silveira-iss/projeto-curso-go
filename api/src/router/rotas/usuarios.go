@@ -1,8 +1,10 @@
+// Package rotas responsável pela centralização das rotas da API
 package rotas
 
 import (
-	"api/src/controllers"
 	"net/http"
+
+	"api/src/controllers"
 )
 
 var rotasUsuarios = []Rota{

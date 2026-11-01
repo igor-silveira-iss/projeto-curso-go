@@ -1,3 +1,4 @@
+// Package controllers responsável por centralizar o conteúdo dos controllers
 package controllers
 
 import "net/http"
