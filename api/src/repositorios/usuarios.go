@@ -113,3 +113,20 @@ func (repositorio Usuarios) Atualizar(ID uint64, usuario modelos.Usuario) error 
 
 	return nil
 }
+
+// Deletar exclui os dados de um usuário cadastrado no banco de dados
+func (repositorio Usuarios) Deletar(ID uint64) error {
+	stmt, erro := repositorio.db.Prepare(
+		"delete from usuarios where id = ?",
+	)
+	if erro != nil {
+		return erro
+	}
+	defer stmt.Close()
+
+	if _, erro := stmt.Exec(ID); erro != nil {
+		return erro
+	}
+
+	return nil
+}
