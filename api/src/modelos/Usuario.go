@@ -10,5 +10,5 @@ type Usuario struct {
 	Nick     string    `json:"nick,omitempty"`
 	Email    string    `json:"email,omitempty"`
 	Senha    string    `json:"senha,omitempty"`
-	CriadoEm time.Time `json:"CriadoEm,omitempty"`
+	CriadoEm time.Time `json:"CriadoEm,omitzero"`
 }
