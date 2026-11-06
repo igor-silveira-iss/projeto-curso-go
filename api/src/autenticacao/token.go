@@ -2,14 +2,13 @@
 package autenticacao
 
 import (
+	"api/src/config"
 	"errors"
 	"fmt"
 	"net/http"
 	"strconv"
 	"strings"
 	"time"
-
-	"api/src/config"
 
 	jwt "github.com/dgrijalva/jwt-go"
 )

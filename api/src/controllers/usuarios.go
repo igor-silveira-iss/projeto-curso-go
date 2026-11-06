@@ -2,19 +2,18 @@
 package controllers
 
 import (
-	"encoding/json"
-	"errors"
-	"io"
-	"net/http"
-	"strconv"
-	"strings"
-
 	"api/src/autenticacao"
 	"api/src/banco"
 	"api/src/modelos"
 	"api/src/repositorios"
 	"api/src/respostas"
 	"api/src/seguranca"
+	"encoding/json"
+	"errors"
+	"io"
+	"net/http"
+	"strconv"
+	"strings"
 
 	"github.com/gorilla/mux"
 )

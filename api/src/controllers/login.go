@@ -1,16 +1,15 @@
 package controllers
 
 import (
-	"encoding/json"
-	"io"
-	"net/http"
-
 	"api/src/autenticacao"
 	"api/src/banco"
 	"api/src/modelos"
 	"api/src/repositorios"
 	"api/src/respostas"
 	"api/src/seguranca"
+	"encoding/json"
+	"io"
+	"net/http"
 )
 
 // Login é responsável por autenticar um usuário na API

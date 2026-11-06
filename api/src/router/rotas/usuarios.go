@@ -2,9 +2,8 @@
 package rotas
 
 import (
-	"net/http"
-
 	"api/src/controllers"
+	"net/http"
 )
 
 var rotasUsuarios = []Rota{

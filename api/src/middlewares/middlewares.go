@@ -2,11 +2,10 @@
 package middlewares
 
 import (
-	"log"
-	"net/http"
-
 	"api/src/autenticacao"
 	"api/src/respostas"
+	"log"
+	"net/http"
 )
 
 // Logger escreve informações da requisição no terminal

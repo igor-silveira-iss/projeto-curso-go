@@ -2,10 +2,9 @@
 package repositorios
 
 import (
+	"api/src/modelos"
 	"database/sql"
 	"fmt"
-
-	"api/src/modelos"
 )
 
 // Usuarios representa um repositório de usuários
