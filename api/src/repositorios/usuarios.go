@@ -67,6 +67,11 @@ func (repositorio Usuarios) Buscar(nomeOuNick string) ([]modelos.Usuario, error)
 		}
 		usuarios = append(usuarios, usuario)
 	}
+
+	if erro = linhas.Err(); erro != nil {
+		return nil, erro
+	}
+
 	return usuarios, nil
 }
 
@@ -208,6 +213,10 @@ func (repositorio Usuarios) BuscarSeguidores(usuarioID uint64) ([]modelos.Usuari
 		seguidores = append(seguidores, seguidor)
 	}
 
+	if erro = linhas.Err(); erro != nil {
+		return nil, erro
+	}
+
 	return seguidores, nil
 }
 
@@ -237,6 +246,10 @@ func (repositorio Usuarios) BuscarSeguindo(usuarioID uint64) ([]modelos.Usuario,
 			return nil, erro
 		}
 		usuariosSeguidos = append(usuariosSeguidos, usuarioSeguido)
+	}
+
+	if erro = linhas.Err(); erro != nil {
+		return nil, erro
 	}
 
 	return usuariosSeguidos, nil
