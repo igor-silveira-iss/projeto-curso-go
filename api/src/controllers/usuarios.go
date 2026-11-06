@@ -285,3 +285,29 @@ func BuscarSeguidores(w http.ResponseWriter, r *http.Request) {
 
 	respostas.JSON(w, http.StatusOK, seguidores)
 }
+
+// BuscarSeguindo retorna todos os usuários que são seguidos por outro usuário
+func BuscarSeguindo(w http.ResponseWriter, r *http.Request) {
+	parametros := mux.Vars(r)
+	usuarioID, erro := strconv.ParseUint(parametros["usuarioID"], 10, 64)
+	if erro != nil {
+		respostas.Erro(w, http.StatusBadRequest, erro)
+		return
+	}
+
+	db, erro := banco.Conectar()
+	if erro != nil {
+		respostas.Erro(w, http.StatusInternalServerError, erro)
+		return
+	}
+	defer db.Close()
+
+	repositorio := repositorios.NovoRepositorioDeUsuarios(db)
+	usuariosSeguidos, erro := repositorio.BuscarSeguindo(usuarioID)
+	if erro != nil {
+		respostas.Erro(w, http.StatusInternalServerError, erro)
+		return
+	}
+
+	respostas.JSON(w, http.StatusOK, usuariosSeguidos)
+}
