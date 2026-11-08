@@ -1,15 +1,16 @@
 package controllers
 
 import (
+	"encoding/json"
+	"io"
+	"net/http"
+	"strconv"
+
 	"api/src/autenticacao"
 	"api/src/banco"
 	"api/src/modelos"
 	"api/src/repositorios"
 	"api/src/respostas"
-	"encoding/json"
-	"io"
-	"net/http"
-	"strconv"
 
 	"github.com/gorilla/mux"
 )
@@ -61,6 +62,27 @@ func CriarPublicacao(w http.ResponseWriter, r *http.Request) {
 
 // BuscarPublicacoes traz todas as publicações do banco de dados
 func BuscarPublicacoes(w http.ResponseWriter, r *http.Request) {
+	usuarioID, erro := autenticacao.ExtrairUsuarioID(r)
+	if erro != nil {
+		respostas.Erro(w, http.StatusUnauthorized, erro)
+		return
+	}
+
+	db, erro := banco.Conectar()
+	if erro != nil {
+		respostas.Erro(w, http.StatusInternalServerError, erro)
+		return
+	}
+	defer db.Close()
+
+	repositorio := repositorios.NovoRepositorioDePublicacoes(db)
+	publicacoes, erro := repositorio.Buscar(usuarioID)
+	if erro != nil {
+		respostas.Erro(w, http.StatusInternalServerError, erro)
+		return
+	}
+
+	respostas.JSON(w, http.StatusOK, publicacoes)
 }
 
 // BuscarPublicacao traz uma única publicação do banco de dados
