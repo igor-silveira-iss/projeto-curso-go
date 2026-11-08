@@ -176,3 +176,18 @@ func (repositorio Publicacoes) BuscarPorUsuario(usuarioID uint64) ([]modelos.Pub
 
 	return publicacoes, nil
 }
+
+// Curtir atribui uma crutida em uma publicação específica
+func (repositorio Publicacoes) Curtir(publicacaoID uint64) error {
+	stmt, erro := repositorio.db.Prepare("update publicacoes set curtidas = curtidas + 1 where id = ?;")
+	if erro != nil {
+		return erro
+	}
+	defer stmt.Close()
+
+	if _, erro = stmt.Exec(publicacaoID); erro != nil {
+		return erro
+	}
+
+	return nil
+}
