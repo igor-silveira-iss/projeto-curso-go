@@ -1,8 +1,9 @@
 package rotas
 
 import (
-	"api/src/controllers"
 	"net/http"
+
+	"api/src/controllers"
 )
 
 var rotasPublicacoes = []Rota{
@@ -34,6 +35,12 @@ var rotasPublicacoes = []Rota{
 		URI:                "/publicacoes/{publicacaoID}",
 		Metodo:             http.MethodDelete,
 		Funcao:             controllers.DeletarPublicacao,
+		RequerAutenticacao: true,
+	},
+	{
+		URI:                "/usuarios/{usuarioID}/publicacoes",
+		Metodo:             http.MethodGet,
+		Funcao:             controllers.BuscarPublicacoesPorUsuario,
 		RequerAutenticacao: true,
 	},
 }
