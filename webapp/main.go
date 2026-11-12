@@ -6,12 +6,16 @@ import (
 	"net/http"
 
 	"webapp/src/config"
+	"webapp/src/cookies"
 	"webapp/src/router"
 	"webapp/src/utils"
 )
 
+//hashKey := hex.EncodeToString(securecookie.GenerateRandomKey(16))
+
 func main() {
 	config.Carregar()
+	cookies.Configurar()
 	utils.CarregarTemplates()
 	r := router.Gerar()
 
