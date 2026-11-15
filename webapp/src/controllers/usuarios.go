@@ -37,5 +37,5 @@ func CriarUsuario(w http.ResponseWriter, r *http.Request) {
 		respostas.TratarStatusCodeDeErro(w, response)
 		return
 	}
-	respostas.JSON(w, response.StatusCode, nil)
+	respostas.JSON(w, http.StatusInternalServerError, nil)
 }
